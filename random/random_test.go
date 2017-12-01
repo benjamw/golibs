@@ -176,7 +176,7 @@ func TestDate(t *testing.T) {
 func TestStringnt(t *testing.T) {
 	// test length
 	for i := 0; i < numTries; i++ {
-		v := Stringnt(20, "alphanumeric")
+		v := Stringnt(20, ALPHANUMERIC)
 		if len(v) != 20 {
 			t.Fatalf("Stringnt returned a string that was not 20 characters long. Length: %d", len(v))
 		}

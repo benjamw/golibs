@@ -51,48 +51,43 @@ const (
 	hexIdxMax  = 63 / alphanumIdxBits
 )
 
+const (
+	ALPHA = iota
+	NUMERIC
+	ALPHANUMERIC
+	HEXADECIMAL
+)
+
+
 // Stringnt returns a random string of length n made of kind characters
-// kind can be
-//   "alpha" (default),
-//   "num", "number", "numeric",
-//   "alnum", "alphanum", "alphanumeric",
-//   "hex", "hexadecimal"
 // taken mostly from http://stackoverflow.com/questions/22892120/how-to-generate-a-random-string-of-a-fixed-length-in-golang
-func Stringnt(n int, kind string) string {
+func Stringnt(n int, kind int) string {
 	bytes := letterBytes
 	idxBits := uint(letterIdxBits)
 	idxMask := int64(letterIdxMask)
 	idxMax := letterIdxMax
 
 	switch kind {
-	case "num":
-		fallthrough
-	case "number":
-		fallthrough
-	case "numeric":
+	case NUMERIC: // 0-9
 		bytes = numberBytes
 		idxBits = uint(numberIdxBits)
 		idxMask = int64(numberIdxMask)
 		idxMax = numberIdxMax
 
-	case "alnum":
-		fallthrough
-	case "alphanum":
-		fallthrough
-	case "alphanumeric":
+	case ALPHANUMERIC: // 0-9 a-z A-Z
 		bytes = alphanumBytes
 		idxBits = uint(alphanumIdxBits)
 		idxMask = int64(alphanumIdxMask)
 		idxMax = alphanumIdxMax
 
-	case "hex":
-		fallthrough
-	case "hexadecimal":
+	case HEXADECIMAL: // 0-9 A-F
 		bytes = hexBytes
 		idxBits = uint(hexIdxBits)
 		idxMask = int64(hexIdxMask)
 		idxMax = hexIdxMax
 
+	case ALPHA: // a-z A-Z
+		fallthrough
 	default:
 		// do nothing
 	}
@@ -116,7 +111,7 @@ func Stringnt(n int, kind string) string {
 
 // Stringn returns a random alpha string of length n
 func Stringn(n int) string {
-	return Stringnt(n, "alpha")
+	return Stringnt(n, ALPHA)
 }
 
 // String returns a random alpha string of random length 1 < n < 255

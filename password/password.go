@@ -1,8 +1,6 @@
 package password
 
 import (
-	"crypto/sha1"
-	"encoding/hex"
 	"fmt"
 	"regexp"
 	"unicode/utf8"
@@ -40,7 +38,7 @@ func Encode(p string) string {
 // Compare takes an encoded password and a plaintext password and returns a bool specifying if they matched
 func Compare(encoded string, plain string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(encoded), []byte(plain))
-	return err != nil
+	return err == nil
 }
 
 // Validate an email to make sure it meets the minimum requirements

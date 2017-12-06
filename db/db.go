@@ -150,7 +150,7 @@ func SaveMulti(ctx context.Context, models []Model) (myerr error) {
 
 	newKeys, myerr := datastore.PutMulti(ctx, keys, models)
 	if myerr != nil {
-		log.Infof(ctx, "Save Err: %v", myerr)
+		log.Infof(ctx, "SaveMulti Err: %v", myerr)
 		return
 	}
 

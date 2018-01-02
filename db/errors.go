@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-// UnfoundObjectError gets thrown when an object nis not found in the database
+// UnfoundObjectError gets thrown when an object is not found in the database
 type UnfoundObjectError struct {
 	EntityType string // model.EntityType() response ("Vendor", "Asset", etc)
 	Key        string // the entities search key

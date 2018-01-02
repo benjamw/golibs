@@ -80,7 +80,7 @@ func GetCaller() (file string, line int, name string) {
 		fileSplit = fileSplit[len(fileSplit)-3:]
 		fileFunc = strings.Join(fileSplit, "/")
 
-		// get actual function name "TestTokenChangePassword" from
+		// get actual function name "TestEncode" from
 		// something like "github.com/benjamw/golibs/password.TestEncode"
 		nameSplit := strings.Split(nameFunc, "/")
 		nameFunc = nameSplit[len(nameSplit)-1]

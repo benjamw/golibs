@@ -44,3 +44,24 @@ func (e *NotARealDelete) Error() string {
 func (e *NotARealDelete) Code() int {
 	return 0
 }
+
+// MissingParentKeyError gets thrown when the parent key has not been attached to an object before calling PreSave
+type MissingParentKeyError struct {
+}
+
+func (e *MissingParentKeyError) Error() string {
+	return "missing parent key"
+}
+
+// No Code() method for MissingParentKeyError because it should not propagate to the user
+
+// MissingRequiredError gets thrown during PreSave when an object is getting saved with missing data
+type MissingRequiredError struct {
+	Property string // the property that is missing
+}
+
+func (e *MissingRequiredError) Error() string {
+	return fmt.Sprintf("required %s is missing", e.Property)
+}
+
+// No Code() method for MissingRequiredError because it should not propagate to the user
